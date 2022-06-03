@@ -1,0 +1,20 @@
+// MIDDLE TITLE
+.detail-middle-title{
+    width: 100%; 
+   text-align: center; 
+   border-bottom: 1px solid #000; 
+   line-height: 0.1em;
+   margin: 10px 0 20px; 
+}
+
+.detail-middle-title span{
+    background:#fff; 
+    padding:0 10px; 
+}
+
+
+.check-input{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

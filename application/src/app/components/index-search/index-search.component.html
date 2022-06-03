@@ -1,0 +1,155 @@
+<form [formGroup]="expeditionForm" (ngSubmit)="onSubmit()" class="mt-4">
+  <div formGroupName="expedition">
+    <!-- travel information -->
+    <div class="row">
+      <div class="from-to-input-container col-4">
+        <div class=" from-container form-floating">
+          <input
+            list="cityFrom"
+            type="text"
+            class="form-control"
+            formControlName="start"
+            placeholder="Ritiro"
+            id="ritiro"
+          />
+          <label for="ritiro">Ritiro</label>
+          <datalist id="cityFrom">
+            <option *ngFor="let city of citiesList" value="{{ city.Field }}">
+              {{ city.Field }}
+            </option>
+          </datalist>
+        </div>
+        <div class="to-container form-floating">
+          <input
+            list="cityTo"
+            type="text"
+            class="form-control"
+            formControlName="destination"
+            placeholder="Destinazione"
+            id="consegna"
+          />
+          <label for="consegna">Consegna</label>
+          <datalist id="cityTo">
+            <option *ngFor="let city of citiesList" value="{{ city.Field }}">
+              {{ city.Field }}
+            </option>
+          </datalist>
+        </div>
+      </div>
+      <!-- pack information -->
+      <ng-container formArrayName="packs">
+        <div
+          *ngFor="
+            let pack of expeditionForm.get('expedition.packs')['controls'];
+            let i = index
+          "
+          class="col-4 "
+        >
+          <div [formGroupName]="i" class="row">
+            <div class="col-10">
+              <div class="row gx-2">
+                <div class="col-6">
+                  <div class="form-floating">
+                    <input
+                      type="number"
+                      formControlName="weight"
+                      placeholder="Peso"
+                      class="info-input form-control"
+                      id="peso"
+                    />
+                    <label for="peso">Peso (kg)</label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-floating">
+                    <input
+                      type="number"
+                      matInput
+                      placeholder="Altezza (cm)"
+                      formControlName="height"
+                      class="info-input form-control"
+                      id="altezza"
+                    />
+                    <label form="altezza">Altezza (cm)</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row gy-0 gx-2">
+                <div class="col-6">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      matInput
+                      placeholder="Lunghezza (cm)"
+                      formControlName="width"
+                      class="info-input form-control"
+                      id="lunghezza"
+                    />
+                    <label for="lunghezza">Lunghezza (cm)</label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      matInput
+                      placeholder="Larghezza (cm)"
+                      formControlName="depth"
+                      class="info-input form-control"
+                      id="larghezza"
+                    />
+                    <label for="larghezza">Larghezza (cm)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+                
+                <p class="pack-number py-0">N° {{ i + 1}}</p>
+                <p class="duplicate-element" (click)="duplicatePack(i)"><i nz-icon nzType="copy" nzTheme="outline"></i></p>
+                <p class="remove-element" (click)="removePack(i)"><i nz-icon nzType="delete" nzTheme="outline"></i></p>
+                <!-- <div class="row label-form-container">
+                            <div class="col-4">
+                                <p>Collo N° {{ i + 1}}</p>
+                            </div>
+                            <div class="col-4">
+                                <button type="button" class="btn btn-outline-warning" (click)="duplicatePack(i)">Duplica</button>
+                            </div>
+                            <div class="col-4">
+                                <button type="button" class="btn btn-outline-danger" (click)="removePack(i)">Elimina</button>
+                            </div>
+                        </div> -->
+              </div>
+          </div>
+          
+        </div>
+      </ng-container>
+      <!-- actions -->
+      <div class="mt-4 col-4 d-flex align-items-center justify-content-center">
+        <button
+          class="btn add-btn"
+          type="button"
+          (click)="addPackage()"
+          mat-fab
+          aria-label="Aggiungi collo"
+        >
+          <i
+            nz-icon
+            nzType="plus-circle"
+            nzTheme="outline"
+            class="add-icon"
+          ></i>
+        </button>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+
+  <!-- send informations -->
+  <div class="d-flex justify-content-end py-3">
+    <button class="btn spedisci" type="submit" mat-raised-button>
+      Spedisci
+    </button>
+  </div>
+</form>

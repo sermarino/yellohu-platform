@@ -1,0 +1,54 @@
+
+.form-control, .info-input, .input-group-text{
+    height: 50px;
+    margin-top: 5px;
+}
+
+.input-group-text{
+    background-color: #fff;
+}
+
+.add-btn{
+   border: 2px solid #205bdf;
+}
+
+
+.add-icon{
+    font-size: 30px;
+    color: #205bdf;
+}
+
+.spedisci{
+    border: 1px solid #47a4fa;
+    font-size:20px;
+    color: #47a4fa;
+    
+}
+
+.spedisci:hover{
+    background-color: #47a4fa;
+    color: #fff;
+}
+
+.info-container{
+    margin-top: 5px;
+}
+
+
+//icons
+.pack-number{
+    
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+
+.duplicate-element{
+    font-size: 20px;
+    color: blue;
+}
+
+.remove-element{
+    font-size: 20px;
+    color: red;
+}

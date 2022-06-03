@@ -1,0 +1,120 @@
+<div class="form-section w-100">
+    <div class="row">
+        <div class="col-4">
+            <div>DA</div>
+
+            <div class="form-card">
+                <nz-select
+                    [ngModel]="zone"
+                    (ngModelChange)="updateModel($event)"
+                    nzBorderless
+                >
+                    <nz-option
+                        *ngFor="let country of countryList"
+                        [nzValue]="country"
+                        [nzLabel]="country"
+                    ></nz-option>
+                </nz-select>
+
+                <hr>
+
+                <input
+                    #capFromInput
+                    placeholder="ENTER CAP"
+                    nz-input
+                    (input)="onInput($event)"
+                    nzBorderless
+                    [nzAutocomplete]="auto"
+                />
+                <nz-autocomplete
+                    [nzDataSource]="filteredOptions"
+                    nzBackfill
+                    #auto
+                ></nz-autocomplete>
+            </div>
+        </div>
+        <div class="col-4">
+            <div>A</div>
+
+            <div class="form-card">
+                <nz-select
+                    [ngModel]="zone"
+                    (ngModelChange)="updateModel($event)"
+                    nzBorderless
+                >
+                    <nz-option
+                        *ngFor="let country of countryList"
+                        [nzValue]="country"
+                        [nzLabel]="country"
+                    ></nz-option>
+                </nz-select>
+
+                <hr>
+
+                <input
+                    #capFromInput
+                    placeholder="ENTER CAP"
+                    nz-input
+                    (input)="onInput($event)"
+                    nzBorderless
+                    [nzAutocomplete]="auto"
+                />
+                <nz-autocomplete
+                    [nzDataSource]="filteredOptions"
+                    nzBackfill
+                    #auto
+                ></nz-autocomplete>
+            </div>
+        </div>
+        <!-- PACK DETAILS -->
+        <div class="col-4">
+            <div>Collo</div>
+     
+
+       <div class="form-card">
+        <input
+            nz-input
+            nz-tooltip
+            nzTooltipTrigger="focus"
+            nzTooltipPlacement="topLeft"
+            nzOverlayClassName="numeric-input"
+            nzBorderless
+            [ngModel]="value"
+            [nzTooltipTitle]="title"
+            placeholder="Peso"
+            (ngModelChange)="onChange($event)"
+            (blur)="onBlur()"
+        />
+
+        <hr>
+
+        <input
+            #capFromInput
+            placeholder="ENTER CAP"
+            nz-input
+            (input)="onInput($event)"
+            nzBorderless
+            [nzAutocomplete]="auto"
+        />
+        <nz-autocomplete
+            [nzDataSource]="filteredOptions"
+            nzBackfill
+            #auto
+        ></nz-autocomplete>
+    </div>
+       <div>
+           
+       </div>
+
+
+
+
+        </div>
+    </div>
+
+    <button
+        nz-button
+        nzType="default"
+        (click)="search()"
+    >Search</button>
+</div>

@@ -1,0 +1,232 @@
+<div class="container py-3">
+  <!-- <nz-page-header
+    class="site-page-header"
+    (nzBack)="onBack()"
+    nzBackIcon
+    nzTitle="Indietro"
+  ></nz-page-header> -->
+
+  <div class="progress-bar-container pb-5 px-5">
+    <nz-steps [nzCurrent]="index">
+      <nz-step nzTitle="Dati spedizione"></nz-step>
+      <nz-step nzTitle="Scegli il corriere"></nz-step>
+      <nz-step nzTitle="Dettagli"></nz-step>
+    </nz-steps>
+  </div>
+  
+  
+
+  <div class="row">
+    <!-- FORM GROUP  -->
+    <div class="forms col-8">
+
+      <div class="row">
+        <div class="col-12">
+          <h3 class="detail-middle-title"><span>Mittente</span></h3>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="form-floating mb-3 col-12">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingSenderName"
+            placeholder="Nome"
+          />
+          <label for="floatingSenderName">Nome / Ragione Sociale</label>
+        </div>
+        </div>
+        <div class="row">
+        <div class="form-floating col-6">
+          <input
+            type="tel"
+            class="form-control"
+            id="floatingSenderTelephone"
+            placeholder="Cognome"
+          />
+          <label for="floatingSenderTelephone">Telefono</label>
+        </div>
+        <div class="form-floating mb-3 col-6">
+          <input
+            type="email"
+            class="form-control"
+            id="floatingSenderMail"
+            placeholder="name@example.com"
+          />
+          <label for="floatingSenderMail">Email </label>
+        </div>
+
+      </div>
+      <div class="row mb-3">
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Note Aggiuntive" id="floatingSenderNote" style="height: 100px"></textarea>
+          <label for="floatingSenderNote">Note Aggiuntive</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-floating mb-3 col-12">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingSenderAddress"
+            placeholder="Nome"
+          />
+          <label for="floatingSenderAddress">Indirizzo Completo</label>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Note Aggiuntive" id="floatingSenderContent" style="height: 100px"></textarea>
+          <label for="floatingSenderContent">Contenuto Spedizione</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-floating mb-3 col-12">
+          <input
+            type="number"
+            class="form-control"
+            id="floatingSenderValue"
+            placeholder="Nome"
+          />
+          <label for="floatingSenderValue">Valore della merce (€)</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h3 class="detail-middle-title"> <span>Destinatario</span> </h3>
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-floating mb-3 col-12">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingConsigneeName"
+            placeholder="Nome"
+          />
+          <label for="floatingConsigneeName">Nome / Ragione Sociale</label>
+        </div>
+        </div>
+        <div class="row">
+        <div class="form-floating col-6">
+          <input
+            type="tel"
+            class="form-control"
+            id="floatingConsigneeTelephone"
+            placeholder="Cognome"
+          />
+          <label for="floatingConsigneeTelephone">Telefono</label>
+        </div>
+        <div class="form-floating mb-3 col-6">
+          <input
+            type="email"
+            class="form-control"
+            id="floatingConsigneeMail"
+            placeholder="name@example.com"
+          />
+          <label for="floatingConsigneeMail">Email </label>
+        </div>
+
+      </div>
+      <div class="row mb-3">
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Note Aggiuntive" id="floatingConsigneeNote" style="height: 100px"></textarea>
+          <label for="floatingConsigneeNote">Note Aggiuntive</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-floating mb-3 col-12">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingConsigneeAddress"
+            placeholder="Nome"
+          />
+          <label for="floatingConsigneeAddress">Indirizzo Completo</label>
+        </div>
+      </div>
+
+    
+
+        <!-- review expedition -->
+        <!-- <div class="row">
+            <h4 class="mt-3">La tua spedizione</h4>
+            <hr>
+            <div *ngFor="let res of packInformation.packages; let i = index">
+                <h5>Pacco {{ i + 1}}</h5>
+                <div class="row">
+                    <div class="col-3">
+                        <span style="font-size:18px">Peso : {{res.weight}} kg</span>
+                    </div>
+                    <div class="col-3">
+                        <span style="font-size:18px">Lunghezza : {{res.depth}} cm</span>
+                    </div>
+                    <div class="col-3">
+                        <span style="font-size:18px">Altezza : {{res.height}} cm</span>
+                    </div>
+                    <div class="col-3">
+                        <span style="font-size:18px">Larghezza : {{res.width}} cm</span>
+                    </div>
+                </div>
+                <div class="form-floating mt-4">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Contenuto</label>
+                  </div>
+                  <div class="form-check mt-2">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Non sto spedendo articoli proibiti e utilizzerò un imballaggio conforme. Ho previamente verificato le condizioni della copertura assicurativa.
+                    </label>
+                  </div>
+
+            </div>
+            
+        </div>
+      </div> -->
+    </div>
+    <!-- END FORM GROUP  -->
+    <!-- SUMMARY -->
+    <div class="summary col-4 d-flex justify-content-center">
+      <nz-card
+        style="width: 300px"
+        nzTitle="{{ result.CourierName }}"
+        [nzExtra]="extraTemplate"
+      >
+        <p>
+          Tempo massimo di spedizione:
+          <span style="font-weight: 700">{{ result.MaxTimeExpedition }}</span>
+        </p>
+        <p>
+          Partenza:
+          <span style="font-weight: 700">{{ packInformation.from }}</span>
+        </p>
+        <p>
+          Destizione:
+          <span style="font-weight: 700">{{ packInformation.to }}</span>
+        </p>
+        <p *ngFor="let res of packInformation.packages; let i = index">
+          Pacco {{ i + 1 }} :
+          <span style="font-weight: 700"
+            >{{ res.depth }} x {{ res.height }} x {{ res.width }} cm</span
+          ><br />
+          Peso: <span style="font-weight: 700">{{ res.weight }} Kg </span>
+        </p>
+        <hr />
+        <p>
+          Prezzo: <span style="font-weight: 700">{{ result.Pricing }}€ </span>
+        </p>
+      </nz-card>
+      <ng-template #extraTemplate> </ng-template>
+    </div>
+    <!-- END SUMMARY -->
+  </div>
+</div>

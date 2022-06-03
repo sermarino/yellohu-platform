@@ -1,0 +1,292 @@
+<nz-page-header
+  class="site-page-header"
+  (nzBack)="onBack()"
+  nzBackIcon
+  nzTitle="Indietro"
+></nz-page-header>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar-container pb-5 px-5">
+  <nz-steps [nzCurrent]="index">
+    <nz-step nzTitle="Dati spedizione"></nz-step>
+    <nz-step nzTitle="Scegli il corriere"></nz-step>
+    <nz-step nzTitle="Dettagli"></nz-step>
+  </nz-steps>
+</div>
+
+<!-- END PROGRESS BAR -->
+
+<div class="btn-container px-4">
+  <button
+    (click)="toggleContent()"
+    class="btn btn-label btn-all mx-3"
+    [ngClass]="{ 'btn-label-active': showPrice }"
+  >
+    + Economico
+  </button>
+  <button
+    (click)="toggleContent()"
+    class="btn btn-label btn-expedition-time mx-3"
+    [ngClass]="{ 'btn-label-active': showTime }"
+  >
+    + Veloce
+  </button>
+  <!-- <button class="btn btn-label btn-price mx-3" > + Economico </button> -->
+</div>
+
+<!-- RESULT CONTENT -->
+<!-- SORTED BY PRICE -->
+<div class="result-content px-5" *ngIf="showPrice">
+  <div
+    class="result-element-container row"
+    *ngFor="let result of sortedByPrice"
+  >
+    <div class="result-element-time col-2">
+      <p class="result-element-time-number mt-3">
+        {{ result.MaxTimeExpedition }}
+      </p>
+      <p class="result-element-text">previsto</p>
+    </div>
+    <div class="result-element-courierName col-2 mt-3">
+      <img
+        style="width: 150px; height: auto"
+        src="{{ selectLogo(result.CourierName) }}"
+      />
+      <!-- {{result.CourierName}} -->
+    </div>
+    <div class="result-element-from col-2 mt-3">
+      <h4 class="text-uppercase">Ritiro</h4>
+      <p>{{ getStartShippingDate() }}</p>
+    </div>
+    <div class="result-element-to col-2 mt-3">
+      <h4 class="text-uppercase">Consegna</h4>
+      <p>{{ getEndShippingDate(result.MaxTimeExpedition) }}</p>
+    </div>
+    <div class="result-element-price col-2 mt-3 me-4 text-end">
+      <p class="result-element-price-number pb-0 mb-0">{{ result.Pricing }}€</p>
+      <p class="iva mt-0 pt-0">+IVA</p>
+      <button
+        (click)="getResultInfo(result)"
+        type="button"
+        class="btn result-element-price-btn"
+      >
+        acquista ora
+      </button>
+    </div>
+    <div>
+      <hr />
+    </div>
+    <div class="result-element-bottom row">
+      <div class="col-6">
+        <p>
+          <button (click)="toggleDetails()" class="btn">Dettagli</button>
+        </p>
+      </div>
+      <div class="col-6 d-flex flex-row-reverse bd-highlight">
+        <span
+          ><i
+            nz-icon
+            nzType="printer"
+            nzTheme="outline"
+            class="printer-icon"
+          ></i>
+          Stampante richiesta</span
+        >
+      </div>
+
+      <div id="collapseExample" *ngIf="!showContent">
+        <div class="">
+          <ul>
+            <li>Tempistiche di spedizione stimate dal corriere</li>
+            <li>Ritiro e consegna durante l’arco della giornata</li>
+            <li>
+              In caso di dimensioni inserite non corrette sarà addebbitato
+              l’eventuale costo in eccesso della spedizione
+            </li>
+            <li>
+              Monitoragggio della spedizione in tempo reale tramite sito del
+              corriere
+            </li>
+            <li>Tempistiche di consegna stimate su giorni lavorativi</li>
+            <li>Consulta la lista degli articoli proibiti</li>
+            <li>Consultare i consigli di imballaggio</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- <nz-collapse [nzBordered]="false">
+                <nz-collapse-panel
+                    #p
+                    *ngFor="let panel of panels; let isFirst = first"
+                    [nzHeader]="panel.name "
+                    [nzActive]="panel.active"
+                    [ngStyle]="panel.customStyle"
+                >
+                    <p>{{ panel.name }}  
+            <span><i nz-icon nzType="printer" nzTheme="outline" class="printer-icon col-6"></i> Stampante richiesta</span>
+                        
+                        content</p>
+                    <ng-template
+                        #expandedIcon
+                        let-active
+                    >
+                        {{ active }}
+                        <i
+                            nz-icon
+                            nzType="caret-right"
+                            class="ant-collapse-arrow"
+                        ></i>
+                    </ng-template>
+                </nz-collapse-panel>
+            </nz-collapse> -->
+
+      <!-- <div class="col-6">
+            <span><i nz-icon nzType="printer" nzTheme="outline" class="printer-icon col-6"></i> Stampante richiesta</span>
+        </div> -->
+    </div>
+  </div>
+</div>
+
+<!-- SORTED BY EXPEDITION TIME -->
+<!-- sortedByExpedition -->
+<div class="result-content px-5" *ngIf="showTime">
+  <div
+    class="result-element-container row"
+    *ngFor="let result of sortedByExpedition"
+  >
+    <div class="result-element-time col-2">
+      <p class="result-element-time-number mt-3">
+        {{ result.MaxTimeExpedition }}
+      </p>
+      <p class="result-element-text">previsto</p>
+    </div>
+    <div class="result-element-courierName col-2 mt-3">
+        <img
+        style="width: 150px; height: auto"
+        src="{{ selectLogo(result.CourierName) }}"
+      />
+    </div>
+    <div class="result-element-from col-2 mt-3">
+      <h4 class="text-uppercase">Ritiro</h4>
+      <p>{{ getStartShippingDate() }}</p>
+    </div>
+    <div class="result-element-to col-2 mt-3">
+      <h4 class="text-uppercase">Consegna</h4>
+      <p>{{ getEndShippingDate(result.MaxTimeExpedition) }}</p>
+    </div>
+    <div class="result-element-price col-2 mt-3 me-4 text-end">
+      <p class="result-element-price-number pb-0 mb-0">{{getRoundedPrice( result.Pricing )}}€</p>
+      <p class="iva mt-0 pt-0">+IVA</p>
+      <button
+        (click)="getResultInfo(result)"
+        type="button"
+        class="btn result-element-price-btn"
+      >
+        acquista ora
+      </button>
+    </div>
+    <div>
+      <hr />
+    </div>
+    <div class="result-element-bottom row">
+      <div class="col-6">
+        <p>
+          <button (click)="toggleDetails()" class="btn">Dettagli</button>
+        </p>
+      </div>
+      <div class="col-6 d-flex flex-row-reverse bd-highlight">
+        <span
+          ><i
+            nz-icon
+            nzType="printer"
+            nzTheme="outline"
+            class="printer-icon"
+          ></i>
+          Stampante richiesta</span
+        >
+      </div>
+
+      <div id="collapseExample" *ngIf="!showContent">
+        <div class="">
+          <ul>
+            <li>Tempistiche di spedizione stimate dal corriere</li>
+            <li>Ritiro e consegna durante l’arco della giornata</li>
+            <li>
+              In caso di dimensioni inserite non corrette sarà addebbitato
+              l’eventuale costo in eccesso della spedizione
+            </li>
+            <li>
+              Monitoragggio della spedizione in tempo reale tramite sito del
+              corriere
+            </li>
+            <li>Tempistiche di consegna stimate su giorni lavorativi</li>
+            <li>Consulta la lista degli articoli proibiti</li>
+            <li>Consultare i consigli di imballaggio</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- **************************************************************** -->
+<!-- <nz-table
+    #basicTable
+    [nzData]="mockResults"
+>
+    <thead>
+        <tr>
+            <th>Destinatario</th>
+            <th>Contenuti</th>
+            <th>Servizio</th>
+            <th>Altri servizi</th>
+            <th>Stato</th>
+            <th>Prezzo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let data of basicTable.data">
+            <tr>
+                <td>Mario Rossi</td>
+                <td>Altro</td>
+                <td>{{data.CourierName}}</td>
+                <td>No assicurazione</td>
+                <td>Pronto per la spedizione</td>
+                <td>
+                    <a>
+                        {{data.Pricing}}
+                    </a>
+                </td>
+            </tr>
+
+            <td colspan="6">
+                <span><i nz-icon nzType="printer" nzTheme="outline"></i> Stampante richiesta</span>
+                <nz-collapse [nzBordered]="false">
+                    <nz-collapse-panel
+                        #p
+                        *ngFor="let panel of panels; let isFirst = first"
+                        [nzHeader]="panel.name"
+                        [nzActive]="panel.active"
+                        [ngStyle]="panel.customStyle"
+                    >
+                        <p>{{ panel.name }} content</p>
+                        <ng-template
+                            #expandedIcon
+                            let-active
+                        >
+                            {{ active }}
+                            <i
+                                nz-icon
+                                nzType="caret-right"
+                                class="ant-collapse-arrow"
+                            ></i>
+                        </ng-template>
+                    </nz-collapse-panel>
+                </nz-collapse>
+            </td>
+
+        </ng-container>
+
+
+    </tbody>
+</nz-table> -->

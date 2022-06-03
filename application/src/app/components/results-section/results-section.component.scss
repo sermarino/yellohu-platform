@@ -1,0 +1,101 @@
+
+
+:host {
+    ::ng-deep {
+        svg {
+            vertical-align: baseline;
+        }
+    }
+}
+
+
+
+.result-content{
+    margin-bottom: 25px;
+
+}
+
+//tabs
+.ant-tabs-tab-btn {
+    color: white !important;
+}
+
+.btn-label {
+    width: 120px;
+    border-radius: 20px;
+    border: 1px solid black;
+    &-active{
+        border: none;
+        background-color: #ffc107;
+        font-weight:600;
+        color: white;
+    }
+}
+
+
+.result-element{
+    color: #5E5E5E;
+
+    &-container{
+        border-radius: 5px;
+        box-shadow: 0px 9px 13px -1px rgba(0,0,0,0.12);        ;
+        display: flex;
+        justify-content: space-between;
+        min-height:100px;
+        margin-top: 25px;
+    }
+
+
+
+    &-time{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: center;
+        background-color: #3482F9;
+        color: #fff;
+        border-radius: 5px 0 30px 0;
+        max-width: 150px;
+        min-height: 125px;
+    }
+    &-time-number{
+        font-size: 28px;
+    }
+    &-text{
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+
+    &-price-number{
+        font-size: 28px;
+        font-weight: 700;
+        color: #ff6c01;
+    }
+    &-price-btn{
+        background-color: #FF6C01;
+        width: auto; 
+        border-radius: 7px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #fff;
+
+    }
+    
+    &-courierName{
+        display: flex;
+        flex-direction: column;
+
+    }
+    
+}
+
+.iva{
+    font-size: 12px;
+    color: #637a89f1;
+}
+
+.printer-icon{
+    font-size: 20px;
+    color: #ff6c01;
+}
+
